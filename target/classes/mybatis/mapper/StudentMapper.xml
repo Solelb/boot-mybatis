@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bin.mapper.StudentMapper">
+
+    <select id="getStudent" resultType="Student">
+       select * from students;
+    </select>
+    <select id="getStudentByClassDesc" resultType="Student">
+        select * from students order by Sclass desc
+    </select>
+    <select id="getColumn" resultType="Student">
+        select Sname,Ssex,Sclass from students
+    </select>
+    <select id="getNumByClass" resultType="int" parameterType="String">
+        select count(Sclass) from students where Sclass = #{Sclass}
+    </select>
+
+
+
+</mapper>
