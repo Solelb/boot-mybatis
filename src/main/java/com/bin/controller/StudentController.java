@@ -44,4 +44,11 @@ public class StudentController {
         System.out.println(numByClass);
         return numByClass;
     }
+
+    @RequestMapping("/id")
+    public Student queryById(){
+        Student student = studentMapper.queryBySno(107);
+        System.out.println(student);
+        return student;
+    }
 }

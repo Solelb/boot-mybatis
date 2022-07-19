@@ -18,4 +18,6 @@ public interface StudentMapper {
     List<Student> getColumn();
 
     int getNumByClass(@Param("Sclass") String Sclass);
+
+    Student queryBySno(int Sno);
 }

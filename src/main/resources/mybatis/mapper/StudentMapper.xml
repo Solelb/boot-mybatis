@@ -17,7 +17,9 @@
     <select id="getNumByClass" resultType="int" parameterType="String">
         select count(Sclass) from students where Sclass = #{Sclass}
     </select>
-
+    <select id="queryBySno" resultType="Student">
+        select * from Students where Sno = #{Sno}
+    </select>
 
 
 </mapper>
