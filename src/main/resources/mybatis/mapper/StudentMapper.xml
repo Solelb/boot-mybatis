@@ -6,10 +6,10 @@
 <mapper namespace="com.bin.mapper.StudentMapper">
 
     <select id="getStudent" resultType="Student">
-       select * from students;
+       select Sno,Sname,Ssex,Sbirthday,Sclass from students;
     </select>
     <select id="getStudentByClassDesc" resultType="Student">
-        select * from students order by Sclass desc
+        select Sno,Sname,Ssex,Sbirthday,Sclass from students order by Sclass desc
     </select>
     <select id="getColumn" resultType="Student">
         select Sname,Ssex,Sclass from students
@@ -18,8 +18,17 @@
         select count(Sclass) from students where Sclass = #{Sclass}
     </select>
     <select id="queryBySno" resultType="Student">
-        select * from Students where Sno = #{Sno}
+        select Sno,Sname,Ssex,Sbirthday,Sclass from Students where Sno = #{Sno}
     </select>
+    <insert id="addStudent" parameterType="Student">
+        insert into students (Sno,Sname,Sclass,Ssex,Sbirthday) values (#{Sno},#{Sname},#{Sclass},#{Ssex},#{Sbirthday});
+    </insert>
+    <update id="updateStudent">
+        update students set Sname = #{Sname}, Sclass = #{Sclass} where Sno = #{Sno};
+    </update>
+    <delete id="deleteStudent">
+        delete from students where Sno = #{Sno}
+    </delete>
 
 
 </mapper>

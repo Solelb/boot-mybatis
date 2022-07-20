@@ -1,19 +1,22 @@
 package com.bin.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Student {
-    private String Sno;
+    private Integer Sno;
     private String Sname;
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date Sbirthday;
     private String Ssex;
     private String Sclass;
 
-    public String getSno() {
+    public Integer getSno() {
         return Sno;
     }
 
-    public void setSno(String sno) {
+    public void setSno(Integer sno) {
         Sno = sno;
     }
 
@@ -52,7 +55,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "Sno='" + Sno + '\'' +
+                "Sno=" + Sno +
                 ", Sname='" + Sname + '\'' +
                 ", Sbirthday=" + Sbirthday +
                 ", Ssex='" + Ssex + '\'' +

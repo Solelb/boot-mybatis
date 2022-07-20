@@ -20,4 +20,10 @@ public interface StudentMapper {
     int getNumByClass(@Param("Sclass") String Sclass);
 
     Student queryBySno(int Sno);
+
+    int addStudent(Student student);
+
+    int updateStudent(Student student);
+
+    int deleteStudent(int Sno);
 }

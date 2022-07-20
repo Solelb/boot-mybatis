@@ -2,21 +2,22 @@ package com.bin.controller;
 
 import com.bin.mapper.StudentMapper;
 import com.bin.pojo.Student;
+import com.bin.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/test")
 public class StudentController {
 
     @Autowired
-    private StudentMapper studentMapper;
+    StudentService studentService;
 
     @RequestMapping("/student")
     public List<Student> queryStudent(){
-        List<Student> studentList = studentMapper.getStudent();
+        List<Student> studentList = studentService.getStudent();
         for (Student student : studentList) {
             System.out.println(student);
         }
@@ -25,7 +26,7 @@ public class StudentController {
 
     @RequestMapping("/desc")
     public List<Student> queryStudentByClassDesc(){
-        List<Student> studentByClassDescList = studentMapper.getStudentByClassDesc();
+        List<Student> studentByClassDescList = studentService.getStudentByClassDesc();
         for (Student student : studentByClassDescList) {
             System.out.println(student);
         }
@@ -34,21 +35,36 @@ public class StudentController {
 
     @RequestMapping("/c")
     public List<Student> queryColumn(){
-        List<Student> columnList = studentMapper.getColumn();
+        List<Student> columnList = studentService.getColumn();
         return columnList;
     }
 
     @RequestMapping("/num")
-    public int queryCountByClass(){
-        int numByClass = studentMapper.getNumByClass("95031");
+    public int queryCountByClass(String Sclass){
+        int numByClass = studentService.getNumByClass(Sclass);
         System.out.println(numByClass);
         return numByClass;
     }
 
     @RequestMapping("/id")
-    public Student queryById(){
-        Student student = studentMapper.queryBySno(107);
+    public Student queryById(int Sno){
+        Student student = studentService.queryBySno(Sno);
         System.out.println(student);
         return student;
+    }
+
+    @PostMapping("/save")
+    public int saveStudent(@RequestBody Student student){
+        return studentService.addStudent(student);
+    }
+
+    @PostMapping("/update")
+    public int updateStudent(@RequestBody Student student){
+        return studentService.updateStudent(student);
+    }
+
+    @RequestMapping("/delete")
+    public int deleteStudent(@RequestParam("Sno") int Sno){
+        return studentService.deleteStudent(Sno);
     }
 }
