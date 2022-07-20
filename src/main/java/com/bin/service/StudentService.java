@@ -3,6 +3,7 @@ package com.bin.service;
 import com.bin.mapper.StudentMapper;
 import com.bin.pojo.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class StudentService implements StudentMapper {
 
     @Autowired
-    StudentMapper studentMapper;
+    private StudentMapper studentMapper;
 
     @Override
     public List<Student> getStudent() {
@@ -41,7 +42,11 @@ public class StudentService implements StudentMapper {
     @Override
     public int addStudent(Student student) {
         return studentMapper.addStudent(student);
+    }
 
+    @Override
+    public int insertManyStudents(List<Student> studentList) {
+        return studentMapper.insertManyStudents(studentList);
     }
 
     @Override

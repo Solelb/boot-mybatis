@@ -1,9 +1,9 @@
 package com.bin.controller;
 
-import com.bin.mapper.StudentMapper;
 import com.bin.pojo.Student;
 import com.bin.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    StudentService studentService;
+    private StudentService studentService;
 
     @RequestMapping("/student")
     public List<Student> queryStudent(){
@@ -58,13 +58,18 @@ public class StudentController {
         return studentService.addStudent(student);
     }
 
+    @PostMapping("/insert")
+    public int insertMoreStudents(@RequestBody List<Student> studentList){
+        return studentService.insertManyStudents(studentList);
+    }
+
     @PostMapping("/update")
     public int updateStudent(@RequestBody Student student){
         return studentService.updateStudent(student);
     }
 
     @RequestMapping("/delete")
-    public int deleteStudent(@RequestParam("Sno") int Sno){
+    public int deleteStudent(@RequestParam("Sno") int Sno) {
         return studentService.deleteStudent(Sno);
     }
 }
