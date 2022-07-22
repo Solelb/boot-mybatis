@@ -36,6 +36,54 @@
     <delete id="deleteStudent">
         delete from students where Sno = #{Sno}
     </delete>
-
+    <select id="queryStudent" resultType="Student">
+        select Sno,Sname,Ssex,Sbirthday,Sclass from students <where>
+        <if test="Sno != null">
+            and Sno = #{Sno}
+        </if>
+        <if test="Sname != null">
+            and Sname = #{Sname}
+        </if>
+        <if test="Sbirthday != null">
+            and Sbirthday = #{Sbirthday}
+        </if>
+        <if test="Ssex != null">
+            and Ssex = #{Ssex}
+        </if>
+        <if test="Sclass != null">
+            and Sclass = #{Sclass}
+        </if>
+    </where>
+    </select>
+    <resultMap id="studentMap" type="Student">
+        <id property="Sno" column="Sno"/>
+        <result property="Sname" column="Sname"/>
+        <result property="Ssex" column="Ssex"/>
+        <result property="Sbirthday" column="Sbirthday"/>
+        <result property="Sclass" column="Sclass"/>
+        <association property="teacher" javaType="Teacher">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="classid" column="classid"/>
+        </association>
+    </resultMap>
+    <select id="getTeacher" resultMap="studentMap">
+        select s.*,t.name from students s left join teachers t on s.Sclass = t.classid
+    </select>
+    <resultMap id="teacherMap" type="Teacher">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="classid" column="classid"/>
+        <collection property="students" ofType="student">
+            <id property="Sno" column="Sno"/>
+            <result property="Sname" column="Sname"/>
+            <result property="Ssex" column="Ssex"/>
+            <result property="Sbirthday" column="Sbirthday"/>
+            <result property="Sclass" column="Sclass"/>
+        </collection>
+    </resultMap>
+    <select id="getStudents" resultMap="teacherMap">
+        select t.id,t.name,s.Sname from teachers t left join students s on t.classid = s.Sclass
+    </select>
 
 </mapper>

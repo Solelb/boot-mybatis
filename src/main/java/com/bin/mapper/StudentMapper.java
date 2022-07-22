@@ -1,11 +1,13 @@
 package com.bin.mapper;
 
 import com.bin.pojo.Student;
+import com.bin.pojo.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -37,4 +39,11 @@ public interface StudentMapper {
 
     //删除学生
     int deleteStudent(int Sno);
+
+    //条件查询
+    List<Student> queryStudent(Student student);
+
+    List<Student> getTeacher();
+
+    List<Teacher> getStudents();
 }

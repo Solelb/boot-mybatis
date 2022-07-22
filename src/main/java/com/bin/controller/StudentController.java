@@ -1,12 +1,14 @@
 package com.bin.controller;
 
 import com.bin.pojo.Student;
+import com.bin.pojo.Teacher;
 import com.bin.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/test")
@@ -71,5 +73,21 @@ public class StudentController {
     @RequestMapping("/delete")
     public int deleteStudent(@RequestParam("Sno") int Sno) {
         return studentService.deleteStudent(Sno);
+    }
+
+    @PostMapping("/query")
+    public List<Student> queryStudents(@RequestBody Student map){
+        List<Student> studentList = studentService.queryStudent(map);
+        return studentList;
+    }
+
+    @RequestMapping("/teacher")
+    public List<Student> getTeacher(){
+        return studentService.getTeacher();
+    }
+
+    @RequestMapping("/students")
+    public List<Teacher> getStudents(){
+        return studentService.getStudents();
     }
 }

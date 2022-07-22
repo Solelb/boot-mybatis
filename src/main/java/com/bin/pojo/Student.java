@@ -11,6 +11,15 @@ public class Student {
     private Date Sbirthday;
     private String Ssex;
     private String Sclass;
+    private Teacher teacher;
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 
     public Integer getSno() {
         return Sno;
@@ -52,6 +61,7 @@ public class Student {
         Sclass = sclass;
     }
 
+
     @Override
     public String toString() {
         return "Student{" +
@@ -60,6 +70,7 @@ public class Student {
                 ", Sbirthday=" + Sbirthday +
                 ", Ssex='" + Ssex + '\'' +
                 ", Sclass='" + Sclass + '\'' +
+                ", teacher=" + teacher +
                 '}';
     }
 }

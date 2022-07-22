@@ -2,13 +2,16 @@ package com.bin.service;
 
 import com.bin.mapper.StudentMapper;
 import com.bin.pojo.Student;
+import com.bin.pojo.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
+@Repository
 public class StudentService implements StudentMapper {
 
     @Autowired
@@ -57,5 +60,20 @@ public class StudentService implements StudentMapper {
     @Override
     public int deleteStudent(int Sno) {
         return studentMapper.deleteStudent(Sno);
+    }
+
+    @Override
+    public List<Student> queryStudent(Student student) {
+        return studentMapper.queryStudent(student);
+    }
+
+    @Override
+    public List<Student> getTeacher() {
+        return studentMapper.getTeacher();
+    }
+
+    @Override
+    public List<Teacher> getStudents() {
+        return studentMapper.getStudents();
     }
 }
