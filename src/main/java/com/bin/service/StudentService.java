@@ -3,6 +3,7 @@ package com.bin.service;
 import com.bin.mapper.StudentMapper;
 import com.bin.pojo.Student;
 import com.bin.pojo.Teacher;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -10,70 +11,41 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-@Service
-@Repository
-public class StudentService implements StudentMapper {
+public interface StudentService  {
 
-    @Autowired
-    private StudentMapper studentMapper;
+    //查询所有学生
+    List<Student> getStudent();
 
-    @Override
-    public List<Student> getStudent() {
-        return studentMapper.getStudent();
-    }
+    //查询学生按班级降序排序
+    List<Student> getStudentByClassDesc();
 
-    @Override
-    public List<Student> getStudentByClassDesc() {
-        return studentMapper.getStudentByClassDesc();
-    }
+    //查询某列所有信息
+    List<Student> getColumn();
 
-    @Override
-    public List<Student> getColumn() {
-        return studentMapper.getColumn();
-    }
+    //查询某班级的人数
+    int getNumByClass(String Sclass);
 
-    @Override
-    public int getNumByClass(String Sclass) {
-        return studentMapper.getNumByClass(Sclass);
-    }
+    //按学号查询学生
+    Student queryBySno(int Sno);
 
-    @Override
-    public Student queryBySno(int Sno) {
-        return studentMapper.queryBySno(Sno);
-    }
+    //添加一个学生
+    int addStudent(Student student);
 
-    @Override
-    public int addStudent(Student student) {
-        return studentMapper.addStudent(student);
-    }
+    //添加多个学生
+    int insertManyStudents(@Param("list") List<Student> studentList);
 
-    @Override
-    public int insertManyStudents(List<Student> studentList) {
-        return studentMapper.insertManyStudents(studentList);
-    }
+    //修改学生信息
+    int updateStudent(Student student);
 
-    @Override
-    public int updateStudent(Student student) {
-        return studentMapper.updateStudent(student);
-    }
+    //删除学生
+    int deleteStudent(int Sno);
 
-    @Override
-    public int deleteStudent(int Sno) {
-        return studentMapper.deleteStudent(Sno);
-    }
+    //条件查询
+    List<Student> queryStudent(Student student);
 
-    @Override
-    public List<Student> queryStudent(Student student) {
-        return studentMapper.queryStudent(student);
-    }
+    List<Student> getTeacher();
 
-    @Override
-    public List<Student> getTeacher() {
-        return studentMapper.getTeacher();
-    }
+    List<Teacher> getStudents();
 
-    @Override
-    public List<Teacher> getStudents() {
-        return studentMapper.getStudents();
-    }
+
 }

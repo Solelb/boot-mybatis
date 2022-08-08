@@ -1,5 +1,6 @@
 package com.bin.controller;
 
+import com.bin.common.Result;
 import com.bin.pojo.Student;
 import com.bin.pojo.Teacher;
 import com.bin.service.StudentService;
@@ -16,6 +17,11 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    @RequestMapping("/result")
+    public Result<?> getAll(){
+        return Result.success(studentService.getStudent());
+    }
 
     @RequestMapping("/student")
     public List<Student> queryStudent(){
@@ -90,4 +96,5 @@ public class StudentController {
     public List<Teacher> getStudents(){
         return studentService.getStudents();
     }
+
 }
